@@ -7,8 +7,10 @@ lazy val server = (project in file("server")).settings(
   pipelineStages in Assets := Seq(scalaJSPipeline),
   compile in Compile <<= (compile in Compile) dependsOn scalaJSPipeline,
   libraryDependencies ++= Seq(
-    "org.webjars" % "jquery" % "2.1.1",
-    "com.vmunier" %% "scalajs-scripts" % "1.0.0"
+    "org.webjars" % "jquery" % "1.11.1",
+    "com.vmunier" %% "scalajs-scripts" % "1.0.0",
+    "org.webjars" %% "webjars-play" % "2.5.0",
+    "org.webjars" % "bootstrap" % "3.1.1-2"
   )
 ).enablePlugins(PlayScala)
   .dependsOn(sharedJvm)
@@ -19,7 +21,9 @@ lazy val client = (project in file("client")).settings(
   persistLauncher in Test := false,
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-    "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
+    "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
+    "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2",
+    "com.lihaoyi" %%% "scalarx" % "0.3.2"
   )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb)
   .dependsOn(sharedJs)
