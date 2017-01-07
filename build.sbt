@@ -7,11 +7,14 @@ lazy val server = (project in file("server")).settings(
   pipelineStages in Assets := Seq(scalaJSPipeline),
   compile in Compile <<= (compile in Compile) dependsOn scalaJSPipeline,
   libraryDependencies ++= Seq(
+    specs2,
     "org.webjars" % "jquery" % "1.11.1",
     "com.vmunier" %% "scalajs-scripts" % "1.0.0",
     "org.webjars" %% "webjars-play" % "2.5.0",
-    "org.webjars" % "bootstrap" % "3.1.1-2"
-  )
+    "org.webjars" % "bootstrap" % "3.1.1-2",
+    "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0"
+  ),
+  scalacOptions ++= Seq("-Xelide-below", "OFF")
 ).enablePlugins(PlayScala)
   .dependsOn(sharedJvm)
 
@@ -24,8 +27,10 @@ lazy val client = (project in file("client")).settings(
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
     "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2",
     "com.lihaoyi" %%% "scalarx" % "0.3.2",
-    "biz.enef" %%% "slogging" % "0.5.2"
-  )
+    "biz.enef" %%% "slogging" % "0.5.2",
+    "com.github.japgolly.scalacss" %%% "core" % "0.5.1"
+  ),
+  scalacOptions ++= Seq("-Xelide-below", "OFF")
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb)
   .dependsOn(sharedJs)
 
@@ -37,4 +42,4 @@ lazy val sharedJvm = shared.jvm
 lazy val sharedJs = shared.js
 
 // loads the jvm project at sbt startup
-onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
+//onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
