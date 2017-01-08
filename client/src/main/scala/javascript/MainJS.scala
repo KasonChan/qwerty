@@ -1,5 +1,6 @@
 package javascript
 
+import css.MainCSS
 import org.scalajs.dom
 import rx._
 import shared.SharedMessages
@@ -9,6 +10,7 @@ import scala.language.postfixOps
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 import scala.util.Try
+import scalacss.Defaults._
 
 /**
   * @author kasonchan
@@ -23,6 +25,8 @@ object MainJS extends js.JSApp with LazyLogging {
   LoggerConfig.level = LogLevel.INFO
 
   def main(): Unit = {
+
+    toStyleSheetInlineJsOps(MainCSS).addToDocument()
 
     Try {
       logger.info(s"${SharedMessages.itWorks}")
