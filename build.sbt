@@ -28,7 +28,8 @@ lazy val client = (project in file("client")).settings(
     "com.github.karasiq" %%% "scalajs-bootstrap" % "1.1.2",
     "com.lihaoyi" %%% "scalarx" % "0.3.2",
     "biz.enef" %%% "slogging" % "0.5.2",
-    "com.github.japgolly.scalacss" %%% "core" % "0.5.1"
+    "com.github.japgolly.scalacss" %%% "core" % "0.5.1",
+    "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
   ),
   scalacOptions ++= Seq("-Xelide-below", "OFF")
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb)
