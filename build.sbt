@@ -14,7 +14,9 @@ lazy val server = (project in file("server")).settings(
     "org.webjars" % "bootstrap" % "3.1.1-2",
     "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0"
   ),
-  scalacOptions ++= Seq("-Xelide-below", "OFF")
+  scalacOptions ++= Seq(
+    "-Xelide-below", "OFF"
+  )
 ).enablePlugins(PlayScala)
   .dependsOn(sharedJvm)
 
@@ -31,7 +33,10 @@ lazy val client = (project in file("client")).settings(
     "com.github.japgolly.scalacss" %%% "core" % "0.5.1",
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
   ),
-  scalacOptions ++= Seq("-Xelide-below", "OFF")
+  scalacOptions ++= Seq(
+    "-Xelide-below", "OFF",
+    "-feature"
+  )
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb)
   .dependsOn(sharedJs)
 
